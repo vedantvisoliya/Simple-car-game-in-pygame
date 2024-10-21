@@ -1,4 +1,4 @@
-# Khel
+# Car Game
 
 A simple road racing game built using Pygame. The player controls a car and avoids colliding with an oncoming vehicle. Try to survive as long as possible and get the highest score!
 
