@@ -3,7 +3,7 @@ import sys
 import random
 
 pygame.init()
-pygame.display.set_caption("Khel")
+pygame.display.set_caption("Car Game")
 points = 0
 window = pygame.display.set_mode((600,600))
 window.fill('green')
