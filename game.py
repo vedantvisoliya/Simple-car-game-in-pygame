@@ -3,7 +3,7 @@ import sys
 import random
 
 pygame.init()
-pygame.display.set_caption("Khel")
+pygame.display.set_caption("Car Game")
 points = 0
 window = pygame.display.set_mode((600,600))
 window.fill('green')
@@ -51,6 +51,17 @@ while True:
     window.blit(car2,(car2_rect))
     realcar = pygame.Rect(car_rect.x + 3, car_rect.y + 3, car_rect.width - 8, car_rect.height - 10)
     realcar2 = pygame.Rect(car2_rect.x + 27, car2_rect.y + 5, car2_rect.width - 55, car2_rect.height - 15)
+    
+    if realcar.colliderect(realcar2):
+        carstop = True
+        window.blit(gameover,(150,50))
+        pygame.draw.rect(window, 'black', retry_rect.inflate(10,10))
+        if retry_rect.collidepoint(pygame.mouse.get_pos()):
+            window.blit(retry_hover, retry_rect)
+        else:
+            window.blit(retry,retry_rect)
+
+
     if carstop == False:          
         x1 += 2
         x2 += 2    
@@ -78,14 +89,7 @@ while True:
     score = text2.render(f'SCORE: {points}', False, 'red')
     window.blit(score, (500,500))
 
-    if realcar.colliderect(realcar2):
-        carstop = True
-        window.blit(gameover,(150,50))
-        pygame.draw.rect(window, 'black', retry_rect.inflate(10,10))
-        if retry_rect.collidepoint(pygame.mouse.get_pos()):
-            window.blit(retry_hover, retry_rect)
-        else:
-            window.blit(retry,retry_rect)
+    
     pygame.display.update()
     clock.tick(60)
     
