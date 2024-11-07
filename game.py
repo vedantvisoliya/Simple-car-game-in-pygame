@@ -54,6 +54,15 @@ while True:
     
     if realcar.colliderect(realcar2):
         carstop = True
+        with open("D:\\Python\\Simple-car-game-in-pygame\\highscore.txt", "r") as h:
+            n = h.read()
+
+        if points >= int(n):
+            with open("D:\\Python\\Simple-car-game-in-pygame\\highscore.txt","w") as h:
+                h.write(str(points))
+            newhighscore = text.render(f'NEW HIGH SCORE: {points}', False, 'red')
+            window.blit(newhighscore,(120,400))
+
         window.blit(gameover,(150,50))
         pygame.draw.rect(window, 'black', retry_rect.inflate(10,10))
         if retry_rect.collidepoint(pygame.mouse.get_pos()):
@@ -67,7 +76,7 @@ while True:
         x2 += 2    
         x3 += 2
         x4 += 2
-        car2_rect.y += 6
+        car2_rect.y += 3 + (points//3)
         if car2_rect.y > 600:
             car2_rect = car2.get_rect(midbottom = (random.randint(225,375),-20))   
             points += 1
@@ -82,9 +91,9 @@ while True:
          
         key = pygame.key.get_pressed()
         if key[pygame.K_LEFT] and car_rect.left > 200:
-            car_rect.x -= 3
+            car_rect.x -= 4
         if key[pygame.K_RIGHT] and car_rect.right < 400:
-            car_rect.x += 3
+            car_rect.x += 4
 
     score = text2.render(f'SCORE: {points}', False, 'red')
     window.blit(score, (500,500))
